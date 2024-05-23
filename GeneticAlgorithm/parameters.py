@@ -11,6 +11,6 @@ algorithm_parameters = {
     'tournament_size': 3,
     'crossover_rate': 0.8,
     'mutation_rate': 0.21,
-    'generations': 5,
+    'generations': 50,
 }
 
