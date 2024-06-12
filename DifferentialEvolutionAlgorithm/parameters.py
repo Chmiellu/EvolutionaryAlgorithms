@@ -1,7 +1,4 @@
-
-
-# genotyp parameters
-n = 15  # length of genotyp
+n = 10
 min_value = -10
 max_value = 10
 decimal_places = 4

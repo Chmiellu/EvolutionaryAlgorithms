@@ -10,7 +10,7 @@ if __name__ == "__main__":
     x = np.linspace(-5, 5, 100)
     y = np.linspace(-5, 5, 100)
     X, Y = np.meshgrid(x, y)
-    Z = sphere(X, Y)  # Pass X and Y as arguments to sphere_function
+    Z = sphere(X, Y)
 
     fig = plt.figure(figsize=(10, 6))
     ax = fig.add_subplot(111, projection='3d')

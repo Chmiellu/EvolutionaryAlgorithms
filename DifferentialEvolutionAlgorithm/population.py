@@ -2,6 +2,12 @@ import copy
 import random
 import numpy as np
 from individual import Individual
+from FunctionsVisualization.sphere_function import sphere
+from FunctionsVisualization.schwefel_function import schwefel
+from FunctionsVisualization.dixonprice_function import dixonprice
+from FunctionsVisualization.rastrigin_function import rastrigin
+from FunctionsVisualization.michalewicz_function import michalewicz
+
 class Population:
     def __init__(self, population_size, is_empty=False):
         self.population_size = population_size
@@ -11,20 +17,6 @@ class Population:
                 individual = Individual()
                 self.population.append(individual)
             self.size = len(self.population)
-
-
-# nieparzyste krzyżowanie
-    # def crossover(self, crossover_rate, populationP):
-    #     for i, parentP in enumerate(populationP.population):
-    #         parentV = self.population[i]
-    #         if np.random.random() < crossover_rate:
-    #             result_genotyp = np.empty_like(parentV.genotyp)
-    #             for j in range(len(parentV.genotyp)):
-    #                 if j % 2 == 0:
-    #                     result_genotyp[j] = parentV.genotyp[j]
-    #                 else:
-    #                     result_genotyp[j] = parentP.genotyp[j]
-    #             self.population[i].genotyp = result_genotyp
 
     def crossover(self, crossover_rate, populationP):
         for i, parentP in enumerate(populationP.population):
@@ -50,16 +42,22 @@ class Population:
             else:
                 self.population.append(copy.deepcopy(populationV.population[i]))
 
-
-
-    def evaluate(self, population):
-        self.population = population.population
+    def evaluate(self, fitness_function_name):
+        fitness_function = self.get_fitness_function(fitness_function_name)
         for individual in self.population:
-            fitness = sum(x ** 2 for x in individual.genotyp)
+            fitness = fitness_function(*individual.genotyp)
             individual.fitness = fitness
         best_individual = min(self.population, key=lambda x: x.fitness)
         self.best_individual = best_individual
 
-
-
-
+    def get_fitness_function(self, name):
+        if name == 'schwefel':
+            return schwefel
+        elif name == 'michalewicz':
+            return michalewicz
+        elif name == 'rastrigin':
+            return rastrigin
+        elif name == 'dixonprice':
+            return dixonprice
+        else:
+            return sphere

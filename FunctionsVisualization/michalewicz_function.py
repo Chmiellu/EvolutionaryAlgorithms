@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
 
 def michalewicz(*args, m=10):
     n = len(args)
@@ -12,15 +10,13 @@ def michalewicz(*args, m=10):
 
 
 if __name__ == "__main__":
-    # Create grid of points
+
     x = np.linspace(0, np.pi, 500)
     y = np.linspace(0, np.pi, 500)
     X, Y = np.meshgrid(x, y)
 
-    # Calculate Z values using the michalewicz function with X and Y as separate arguments
     Z = michalewicz(X, Y)
 
-    # Plot
     fig = plt.figure(figsize=(10, 6))
     ax = fig.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z, cmap='viridis')

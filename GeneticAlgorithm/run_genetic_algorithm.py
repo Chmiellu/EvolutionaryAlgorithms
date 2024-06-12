@@ -49,7 +49,7 @@ class GeneticAlgorithm:
 genetic_algorithm = GeneticAlgorithm(**algorithm_parameters)
 best_genotyp_population, best_genotyp_overall, mean_evaluation_population, generation_data, function_name = genetic_algorithm.fit()
 
-# Wyświetlanie wyników dla każdej generacji
+
 for generation in range(genetic_algorithm.generations):
     print(f"Generation {generation + 1}:")
     print("Best genotyp in population:")

@@ -1,5 +1,3 @@
-
-# genotyp parameters
 n = 3
 min_value = -5
 max_value = 5
